@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Script to configure hosts file for the task
+# Set: localhost -> 127.0.0.2  and  facebook.com -> 8.8.8.8
 
-sed -i 's/127.0.0.1\tlocalhost/127.0.0.2\tlocalhost/' /etc/hosts
-echo "8.8.8.8 facebook.com" >> /etc/hosts
+# Remplace la ligne localhost (même s'il y a d'autres alias) par exactement "127.0.0.2    localhost"
+sed -i -E 's/^127\.0\.0\.1[[:space:]]+localhost(\b.*)?$/127.0.0.2\tlocalhost/' /etc/hosts
+
+# Supprime tout mapping existant de facebook.com puis ajoute le bon
+sed -i -E '/(^|[[:space:]])facebook\.com([[:space:]]|$)/d' /etc/hosts
+printf '8.8.8.8\tfacebook.com\n' >> /etc/hosts
