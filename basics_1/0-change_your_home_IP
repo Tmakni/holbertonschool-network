@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
-# Change localhost -> 127.0.0.2 and add facebook.com -> 8.8.8.8
-
-sed -i 's/^127\.0\.0\.1[[:space:]]\+localhost$/127.0.0.2 localhost/' /etc/hosts
-echo "8.8.8.8 facebook.com" >> /etc/hosts
+sed -i '1i 8.8.8.8 facebook.com' /etc/hosts
+sed -i '1i 127.0.0.2 localhost' /etc/hosts
